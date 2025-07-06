@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { User, Mail, Calendar } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const dummyUser = {
   name: "Jony Test",
@@ -15,6 +16,16 @@ const cardVariants = {
 };
 
 const Home = () => {
+  const { user } = useSelector((state) => state.auth);
+
+  if (!user) {
+    return (
+      <div className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center bg-blue-50">
+        <div className="text-xl text-gray-600">Not logged in.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center bg-blue-50">
       <motion.div
@@ -28,24 +39,22 @@ const Home = () => {
         <div className="flex flex-col items-center gap-4">
           <User size={48} className="text-blue-700 drop-shadow" />
           <span className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-wide">
-            {dummyUser.name}
+            {user.Name}
           </span>
         </div>
         <div className="flex flex-col gap-4 mt-4">
           <div className="flex items-center gap-3 text-lg">
             <Mail size={22} className="text-purple-700" />
             <a
-              href={`mailto:${dummyUser.email}`}
+              href={`mailto:${user.Email}`}
               className="text-blue-700 hover:underline font-medium"
             >
-              {dummyUser.email}
+              {user.Email}
             </a>
           </div>
           <div className="flex items-center gap-3 text-lg">
             <Calendar size={22} className="text-yellow-600" />
-            <span className="text-yellow-800 font-medium">
-              Age: {dummyUser.age}
-            </span>
+            <span className="text-yellow-800 font-medium">Age: {user.Age}</span>
           </div>
         </div>
       </motion.div>

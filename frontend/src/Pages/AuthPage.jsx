@@ -45,7 +45,7 @@ const TypingAnimation = () => {
 };
 
 const AuthPage = () => {
-  const [showRegister, setShowRegister] = useState(true);
+  const [showRegister, setShowRegister] = useState(false);
 
   return (
     <div className="min-h-screen flex bg-blue-50">

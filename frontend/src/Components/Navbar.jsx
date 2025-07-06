@@ -1,7 +1,18 @@
 import React from "react";
 import { LogOut } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../Features/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    navigate("/register");
+  };
+
   return (
     <nav className="w-full flex items-center justify-between px-8 py-5 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 shadow-lg rounded-b-2xl">
       {/* Left: Empty for spacing */}
@@ -14,6 +25,7 @@ const Navbar = () => {
       <button
         className="p-2 rounded-full cursor-pointer transition bg-transparent hover:bg-blue-100 group"
         title="Logout"
+        onClick={handleLogout}
       >
         <LogOut
           size={26}

@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const signup = async (req, res) => {
   try {
     const { Name, Email, Password, Age } = req.body;
+    // console.log("Received signup request:", req.body);
 
     // Validate required fields
     if (!Name || !Email || !Password || !Age) {
@@ -69,8 +70,9 @@ const login = async (req, res) => {
     // Set cookie and return response
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      secure: true,
+      sameSite: "None",
+      maxAge: 1 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -88,7 +90,23 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+    });
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    // console.log("Error during logout:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   signup,
   login,
+  logout,
 };
