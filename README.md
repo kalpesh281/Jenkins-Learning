@@ -11,6 +11,9 @@ This repository contains a backend (Node.js/Express) and a frontend (React) appl
 - Automatic deployment to Render after successful builds
 - Jenkins webhook automation for continuous integration
 
+![Image](file:///Users/kalpesh/Desktop/Screenshot%202025-07-11%20at%205.27.46%E2%80%AFPM.png)
+
+
 ## Project Structure
 
 ```
