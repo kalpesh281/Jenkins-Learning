@@ -1,0 +1,31 @@
+# Ignore node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore dotenv files (you mount them at runtime)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore Git and version control files
+.git
+.gitignore
+
+# Ignore Docker-related files (already on host)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Ignore editor configs and logs
+.vscode
+.idea
+*.log
+*.swp
+
+# Ignore test coverage and build output (if any)
+coverage
+dist
+build
