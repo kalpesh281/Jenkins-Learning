@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   backend:
+    image: kalpesh0524/backend  # ✅ exact repo name
     build: ./backend
     ports:
       - "5003:5003"
