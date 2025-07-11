@@ -22,7 +22,7 @@ WORKDIR /app
 COPY --from=builder /app /app
 
 # Expose the port the app runs on
-EXPOSE 5001
+EXPOSE 5003
 
 
 # Start the server
