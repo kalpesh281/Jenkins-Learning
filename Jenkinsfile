@@ -51,9 +51,16 @@ JWT_SECRET=$JWT_SECRET
         stage('Image to Docker Hub') {
             steps {
                 echo '🚀 Tagging and pushing backend image to Docker Hub...'
-                sh '''
-                    docker push $DOCKER_REPO:latest
-                '''
+                sh 'docker push $DOCKER_REPO:latest'
+            }
+        }
+
+        stage('Deploy to Render') {
+            steps {
+                echo '🚀 Triggering Render deployment using deploy hook...'
+                withCredentials([string(credentialsId: 'render_deploy_hook', variable: 'RENDER_HOOK')]) {
+                    sh 'curl -X POST "$RENDER_HOOK"'
+                }
             }
         }
     }
